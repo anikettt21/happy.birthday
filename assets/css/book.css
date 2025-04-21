@@ -1,0 +1,268 @@
+#book-container {
+    perspective: 2000px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.book-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-3);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#book-container.active .book-background {
+    opacity: 1;
+}
+
+.book {
+    position: relative;
+    width: 400px;
+    height: 550px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation: floatUp 1s ease-out;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    padding: 30px;
+    backface-visibility: hidden;
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow: hidden;
+}
+
+.page::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.05), transparent);
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.memory-img {
+    width: 85%;
+    height: 55%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+    border: 5px solid white;
+}
+
+.memory-img:hover {
+    transform: scale(1.03);
+}
+
+.page.cover {
+    background: var(--gradient-2);
+    text-align: center;
+    overflow: hidden;
+}
+
+.cover-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;
+}
+
+.cover h1 {
+    font-size: 3.5rem;
+    color: var(--light-color);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    margin: 20px 0;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: url('assets/images/avatar.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: pulse 3s infinite;
+}
+
+.cover p {
+    font-size: 1.5rem;
+    color: var(--light-color);
+    font-family: 'Dancing Script', cursive;
+    margin-bottom: 30px;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light-color);
+    animation: pulse 2s infinite;
+}
+
+.click-hint i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sparkles::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,5 61,40 95,40 67,62 79,95 50,75 21,95 33,62 5,40 39,40" fill="rgba(255,255,255,0.5)"/></svg>');
+    background-size: 50px 50px;
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.quote-container {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background: rgba(251, 194, 235, 0.1);
+    border-radius: 10px;
+}
+
+.quote {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.hearts, .birthday-cake, .balloons {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 10px;
+    animation: pulse 2s infinite;
+}
+
+.hearts i {
+    margin: 0 5px;
+}
+
+.ribbon {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.final-page {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    color: var(--light-color);
+}
+
+.final-page h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.final-message {
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.final-message p {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+#celebrate-btn {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: var(--light-color);
+    color: var(--primary-color);
+    border-radius: 50px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+#celebrate-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}

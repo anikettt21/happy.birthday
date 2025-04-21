@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Birthday Wishes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/book.css">
+    <link rel="stylesheet" href="assets/css/game.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/confetti.css">
+</head>
+<body>
+    <!-- Game Section -->
+    <div id="game-container" class="active">
+        <div class="game-header">
+            <h2>Match the pairs!</h2>
+            <p>Find all pairs to unlock your special birthday surprise</p>
+        </div>
+        <div id="game-grid"></div>
+        <div id="game-score">
+            <div class="score-container">
+                <i class="fas fa-star"></i>
+                <span>Matches: <span id="match-count">0</span>/4</span>
+            </div>
+            <div class="timer-container">
+                <i class="fas fa-clock"></i>
+                <span id="timer">00:00</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cake Section -->
+    <div id="cake-container" class="hidden">
+        <div class="cake-wrapper floating">
+            <div class="cake">
+                <div class="cake-base"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-top"></div>
+                <div class="frosting"></div>
+                
+                <!-- Candles will be added dynamically -->
+                
+                <!-- Decorations -->
+                <!-- Sprinkles and cherries will be added dynamically -->
+            </div>
+        </div>
+
+        <div class="cake-message">
+            <h2>Happy Birthday!</h2>
+            <p>Blow out the candles to make a wish!</p>
+            <div class="candles-progress">
+                <i class="fas fa-birthday-cake"></i>
+                <span class="progress-text">Candles remaining: <span id="candles-count">5</span>/5</span>
+            </div>
+        </div>
+
+        <button id="open-book-btn" class="cake-btn">Open Your Birthday Book! 🎁</button>
+    </div>
+
+    <!-- Book Section -->
+    <div id="book-container" class="hidden">
+        <div class="book-background"></div>
+        <div class="control-panel">
+            <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+            <button id="music-toggle"><i class="fas fa-volume-up"></i></button>
+        </div>
+        <div id="book" class="book">
+            <!-- Cover -->
+            <div class="page cover">
+                <div class="cover-content">
+                    <div class="sparkles"></div>
+                    <h1>Happy Birthday Prashika!</h1>
+
+                    <div class="click-hint">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span>Click to Open</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pages -->
+            <div class="page">
+                <div class="ribbon">Happy Birthday</div>
+                <div class="page-content">
+                    <img src="assets/images/cover.png" alt="Birthday Memory" class="memory-img">
+                    <div class="quote-container">
+                        <p class="quote">"Your smile's a light, your soul a song,
+                            May happiness to you always belong!"</p>
+                        <div class="hearts">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page">
+                <div class="ribbon">Celebrate you!</div>
+                <div class="page-content">
+                    <img src="assets/images/page2.jpg" alt="Birthday Memory" class="memory-img">
+                    <div class="quote-container">
+                        <p class="quote">"Like flowers that bloom with morning's grace,
+                            May joy and peace your path embrace.
+                            With every wish the stars bestow,
+                            May love within your heart always glow!"</p>
+                        <div class="birthday-cake">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page">
+                <div class="ribbon">Happy Birthday</div>
+                <div class="page-content">
+                    <img src="assets/images/page3.jpg" alt="Birthday Memory" class="memory-img">
+                    <div class="quote-container">
+                        <p class="quote">"A heart so kind, a soul so rare,
+                            May every moment show how much we care!"</p>
+                        <div class="balloons">
+                            <i class="fas fa-balloon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page final-page">
+                <div class="page-content">
+                    <h2>Wishing You The Best Birthday Ever!</h2>
+                    <div class="final-message">
+                        <p>As candles glow and wishes rise,
+                            May blessings rain like open skies.</p>
+                        <p>With love and best wishes,</p>
+                        <p class="signature">Your Friend</p>
+                    </div>
+                    <button id="celebrate-btn">Celebrate! 🎉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confetti-container" class="hidden"></div>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music/happy_birthday.mp3" type="audio/mp3">
+    </audio>
+    <audio id="matchSound">
+        <source src="assets/music/match.mp3" type="audio/mp3">
+    </audio>
+    <audio id="flipSound">
+        <source src="assets/music/" type="audio/mp3">
+    </audio>
+    <audio id="celebrationSound">
+        <source src="assets/music/" type="audio/mp3">
+    </audio>
+    <audio id="blowSound">
+        <source src="assets/music/" type="audio/mp3">
+    </audio>
+    <!-- Add additional background music options -->
+    <audio id="happyBirthdayMusic" preload="auto">
+        <source src="assets/music/happy_birthday.mp3" type="audio/mp3">
+    </audio>
+    <audio id="partyMusic" preload="auto">
+        <source src="assets/music/" type="audio/mp3">
+    </audio>
+    <audio id="joyfulMusic" preload="auto">
+        <source src="assets/music/" type="audio/mp3">
+    </audio>
+    <script src="js/game.js"></script>
+    <script src="js/book.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/cake.js"></script>
+    <script src="js/confetti.js"></script>
+</body>
+</html>
